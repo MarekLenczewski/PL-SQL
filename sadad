@@ -1,0 +1,34 @@
+Create Table lands(
+            id_land int not null,
+            office_id number,
+            locations varchar2(50),
+            constraint pk_departaments primary key (deptno),
+            constraint fk_officeID foreign key (office_id),
+            references offices(office_id)
+            );
+Create Table offices(
+            office_id int,
+            office_chief_id number,
+            office_emp_id number,
+            address varchar2(30),
+            employee_id int,
+            constraint pk_officeid primary key (office_id),
+            constraint fk_employeeid foreign key (office_emp_id),
+            references employees(employee_id)
+            );
+Create Table employees(
+            employee_id int,
+            names varchar2(20),
+            office_chef_id int,
+            constraint pk_employeeid primary key (employee_id),
+            constraint fk_chiefid foreign key (office_chef_id),
+            references offices (office_chief_id)
+            );
+
+Create or replace trigger LANDS_BIU
+    before insert or update on employees
+    for each row
+begin
+    
+     
+            
